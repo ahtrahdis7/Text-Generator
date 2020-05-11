@@ -1,7 +1,18 @@
 function read_data(){
     let input = $("#textarea1").val();
     // alert("working");
-    $("#textarea1").val('')
+    // $("#textarea1").val('')
+    if(input.length != 0){
+        $.ajax({
+            url: '/get_text?input_text=' + input,
+            type: 'GET',
+            success: function(response) {
+               
+            }
+        });
+    }else{
+        alert("try after entering input sequence of shakespearian texts.")
+    }
 }
 
 function read_begin_text() {
@@ -13,8 +24,8 @@ function read_begin_text() {
     $.ajax({
         url: '/get_data?begin_with=' + start_with+'&length='+num_words,
         type: 'GET',
-        success: function(response) {
-           
+        success: function(dict) {
+           model_output.innerText = dict['predict']
         }
     });
 }

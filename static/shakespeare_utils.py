@@ -1,15 +1,15 @@
 # Load Packages
-# from __future__ import print_function
-# from keras.callbacks import LambdaCallback
-# from keras.models import Model, load_model, Sequential
-# from keras.layers import Dense, Activation, Dropout, Input, Masking
-# from keras.layers import LSTM
-# from keras.utils.data_utils import get_file
-# from keras.preprocessing.sequence import pad_sequences
-# import numpy as np
-# import random
-# import sys
-# import io
+from __future__ import print_function
+from keras.callbacks import LambdaCallback
+from keras.models import Model, load_model, Sequential
+from keras.layers import Dense, Activation, Dropout, Input, Masking
+from keras.layers import LSTM
+from keras.utils.data_utils import get_file
+from keras.preprocessing.sequence import pad_sequences
+import numpy as np
+import random
+import sys
+import io
 
 def build_data(text, Tx = 40, stride = 3):
     """
@@ -114,25 +114,25 @@ def on_epoch_end(epoch, logs):
     # Stop at the end of a line (4 lines)
     print()
  """   
-print("Loading text data...")
-text = io.open('shakespeare.txt', encoding='utf-8').read().lower()
-#print('corpus length:', len(text))
+# print("Loading text data...")
+# text = io.open('shakespeare.txt', encoding='utf-8').read().lower()
+# #print('corpus length:', len(text))
 
-Tx = 40
-chars = sorted(list(set(text)))
-char_indices = dict((c, i) for i, c in enumerate(chars))
-indices_char = dict((i, c) for i, c in enumerate(chars))
-#print('number of unique characters in the corpus:', len(chars))
+# Tx = 40
+# chars = sorted(list(set(text)))
+# char_indices = dict((c, i) for i, c in enumerate(chars))
+# indices_char = dict((i, c) for i, c in enumerate(chars))
+# #print('number of unique characters in the corpus:', len(chars))
 
-print("Creating training set...")
-X, Y = build_data(text, Tx, stride = 3)
-print("Vectorizing training set...")
-x, y = vectorization(X, Y, n_x = len(chars), char_indices = char_indices) 
-print("Loading model...")
-model = load_model('models/model_shakespeare_kiank_350_epoch.h5')
+# print("Creating training set...")
+# X, Y = build_data(text, Tx, stride = 3)
+# print("Vectorizing training set...")
+# x, y = vectorization(X, Y, n_x = len(chars), char_indices = char_indices) 
+# print("Loading model...")
+# model = load_model('models/model_shakespeare_kiank_350_epoch.h5')
 
 
-def generate_output(usr_input):
+def generate_output(usr_input, Tx, chars):
     generated = ''
     #sentence = text[start_index: start_index + Tx]
     #sentence = '0'*Tx
